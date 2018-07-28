@@ -9,13 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".presenter.trip.TripActivity" />
+        <activity
+            android:name=".TripListActivity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- <activity -->
+        <!-- android:name=".presenter.trip.TripActivity" -->
+        <!-- android:label="@string/title_activity_trip" -->
+        <!-- android:theme="@style/AppTheme.NoActionBar"></activity> -->
+        <activity android:name=".presenter.BaseActivity"></activity>
     </application>
 
 </manifest>
