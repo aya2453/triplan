@@ -9,11 +9,28 @@
 
     <!-- TODO: 画像の差し替え -->
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@null"
         android:scaleType="centerCrop"
-        android:src="@mipmap/sample2"
+        android:src="@drawable/sample2"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- TODO:レイアウトの差し替え -->
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/btn_google_signin_light_normal"
+        android:contentDescription="@null"
+        android:paddingLeft="50dp"
+        android:paddingRight="24dp"
+        android:text="Googleでログイン"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
