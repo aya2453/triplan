@@ -6,8 +6,9 @@ import dagger.android.ContributesAndroidInjector
 
 
 @Module
-interface ActivityBuilder {
+internal abstract class ActivityBuilder {
 
-    @ContributesAndroidInjector(modules = [LoginActivityModule::class])
-    fun bindLoginActivity(): LoginActivity
+    @ContributesAndroidInjector(modules = [LoginActivityModule::class, ViewModelBuilder::class])
+    internal abstract fun bindLoginActivity(): LoginActivity
+
 }

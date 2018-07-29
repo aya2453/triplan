@@ -1,8 +1,9 @@
 package `fun`.triplan.ui.login
 
 import `fun`.triplan.R
-import `fun`.triplan.data.UserRepository
+import `fun`.triplan.di.ViewModelFactory
 import `fun`.triplan.ui.BaseActivity
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -19,7 +20,6 @@ import android.view.View.SYSTEM_UI_FLAG_LOW_PROFILE
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
@@ -34,6 +34,18 @@ import javax.inject.Inject
  */
 class LoginActivity : BaseActivity() {
 
+    @Inject
+    lateinit var googleSignInClient: GoogleSignInClient
+    @Inject
+    lateinit var firebaseAuth: FirebaseAuth
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    //TODO: ここもInjectできるようにする
+    private val loginViewModel: LoginViewModel by lazy {
+        ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
+    }
+
     private val gestureDetector by lazy {
         val simpleOnGestureListener = object : SimpleOnGestureListener() {
             override fun onSingleTapUp(event: MotionEvent): Boolean {
@@ -45,26 +57,6 @@ class LoginActivity : BaseActivity() {
     }
 
     private var systemUiVisible: Boolean = false
-
-    // TODO:DIする
-    private val googleSignInClient: GoogleSignInClient by lazy {
-        val gso = GoogleSignInOptions.Builder()
-                .requestIdToken(getString(R.string.google_sign_in_server_client_id))
-                .build()
-        GoogleSignIn.getClient(this, gso)
-    }
-
-    // TODO:DIする
-    private val firebaseAuth: FirebaseAuth by lazy {
-        FirebaseAuth.getInstance()
-    }
-
-    @Inject
-    lateinit var userRepository: UserRepository
-
-//    private val loginViewModel: LoginViewModel by lazy {
-//        ViewModelProviders.of(this, ).get(LoginViewModel::class.java)
-//    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -117,7 +109,7 @@ class LoginActivity : BaseActivity() {
         authResult.user.getIdToken(false).let {
             if (it.isSuccessful) {
                 Log.d("#トークン", it.result.token.toString())
-//                loginViewModel.auth(it.result.token!!)
+                loginViewModel.auth(it.result.token!!)
             }
         }
     }

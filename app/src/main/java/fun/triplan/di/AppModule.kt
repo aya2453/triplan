@@ -13,4 +13,5 @@ internal object AppModule {
     @Provides
     @JvmStatic
     fun provideContext(application: Application): Context = application
+
 }
