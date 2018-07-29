@@ -45,6 +45,8 @@ class LoginActivity : BaseActivity() {
     }
 
     private var systemUiVisible: Boolean = false
+
+    // TODO:DIする
     private val googleSignInClient: GoogleSignInClient by lazy {
         val gso = GoogleSignInOptions.Builder()
                 .requestIdToken(getString(R.string.google_sign_in_server_client_id))
@@ -52,6 +54,7 @@ class LoginActivity : BaseActivity() {
         GoogleSignIn.getClient(this, gso)
     }
 
+    // TODO:DIする
     private val firebaseAuth: FirebaseAuth by lazy {
         FirebaseAuth.getInstance()
     }

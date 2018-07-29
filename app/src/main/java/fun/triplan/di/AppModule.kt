@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-@Module(subcomponents = [LoginActivityComponent::class])
+@Module
 internal object AppModule {
 
     @Singleton

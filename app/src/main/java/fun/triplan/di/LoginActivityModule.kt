@@ -10,9 +10,7 @@ internal object LoginActivityModule {
 
     @Provides
     @JvmStatic
-    fun provideLoginActivity(loginActivity: LoginActivity): LoginActivity {
-        return loginActivity
-    }
+    fun provideLoginActivity(loginActivity: LoginActivity): LoginActivity = loginActivity
 
 
     @Provides
