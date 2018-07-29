@@ -4,6 +4,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("android.extensions")
+    kotlin("kapt")
 }
 
 android {
@@ -37,6 +38,11 @@ dependencies {
     implementation("com.android.support:design:27.1.1")
     implementation("com.google.firebase:firebase-core:16.0.1")
     implementation("com.google.android.gms:play-services-auth:15.0.1")
+    implementation("com.google.dagger:dagger:2.16")
+    implementation("com.google.dagger:dagger-android:2.16")
+    implementation("com.google.dagger:dagger-android-support:2.16")
+    kapt("com.google.dagger:dagger-compiler:2.16")
+    kapt("com.google.dagger:dagger-android-processor:2.16")
     testImplementation("junit:junit:4.12")
     androidTestImplementation("com.android.support.test:runner:1.0.2")
     androidTestImplementation("com.android.support.test.espresso:espresso-core:3.0.2")

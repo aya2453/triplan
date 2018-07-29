@@ -1,6 +1,7 @@
-package `fun`.triplan.presenter.login
+package `fun`.triplan.ui.login
 
 import `fun`.triplan.R
+import `fun`.triplan.data.UserRepository
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -20,7 +21,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_login.*
+import javax.inject.Inject
 
 
 /**
@@ -41,8 +44,12 @@ class LoginActivity : AppCompatActivity() {
     private var systemUiVisible: Boolean = false
     lateinit var googleSignInClient: GoogleSignInClient
 
+    @Inject
+    lateinit var userRepository: UserRepository
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         val gso = GoogleSignInOptions.Builder()

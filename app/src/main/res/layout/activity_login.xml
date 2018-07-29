@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presenter.login.LoginActivity">
+    tools:context=".ui.login.LoginActivity">
 
     <!-- TODO: 画像の差し替え -->
     <ImageView

@@ -8,5 +8,6 @@
     <string name="title_activity_trip">TripActivity</string>
     <string name="action_settings">Settings</string>
 
+    <!-- TODO:別のファイルに切り出してignoreする -->
     <string name="google_sign_in_server_client_id">428221645610-lo7slbsvpnoi8ho775uhl5ud9jcb3tn8.apps.googleusercontent.com</string>
 </resources>
