@@ -2,9 +2,10 @@ package `fun`.triplan.ui.login
 
 import `fun`.triplan.R
 import `fun`.triplan.data.UserRepository
+import `fun`.triplan.ui.BaseActivity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
@@ -21,7 +22,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
-import dagger.android.AndroidInjection
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
@@ -29,7 +32,7 @@ import javax.inject.Inject
 /**
  * ログイン画面
  */
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     private val gestureDetector by lazy {
         val simpleOnGestureListener = object : SimpleOnGestureListener() {
@@ -42,20 +45,28 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private var systemUiVisible: Boolean = false
-    lateinit var googleSignInClient: GoogleSignInClient
+    private val googleSignInClient: GoogleSignInClient by lazy {
+        val gso = GoogleSignInOptions.Builder()
+                .requestIdToken(getString(R.string.google_sign_in_server_client_id))
+                .build()
+        GoogleSignIn.getClient(this, gso)
+    }
+
+    private val firebaseAuth: FirebaseAuth by lazy {
+        FirebaseAuth.getInstance()
+    }
 
     @Inject
     lateinit var userRepository: UserRepository
 
+//    private val loginViewModel: LoginViewModel by lazy {
+//        ViewModelProviders.of(this, ).get(LoginViewModel::class.java)
+//    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        val gso = GoogleSignInOptions.Builder()
-                .requestIdToken(getString(R.string.google_sign_in_server_client_id))
-                .build()
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
         login_button.setOnClickListener {
             startActivityForResult(googleSignInClient.signInIntent, REQUEST_CODE_SIGN_IN)
         }
@@ -69,11 +80,42 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * https://developers.google.com/android/reference/com/google/android/gms/common/api/CommonStatusCodes.html#INTERNAL_ERROR
+     */
     private fun handleSignIn(completedTask: Task<GoogleSignInAccount>) {
         try {
-            //TODO サーバー側での認証/登録/ログイン処理
+            val account = completedTask.getResult(ApiException::class.java)
+            firebaseAuthWithGoogle(account)
+//            loginViewModel.auth(completedTask.result.idToken!!)
+
         } catch (e: ApiException) {
-            // TODO:ログ出す
+            Log.d("エラー", e.statusCode.toString())
+        }
+    }
+
+
+    /**
+     * https://developers-jp.googleblog.com/2016/10/firebase-task-2.html
+     */
+    private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
+        val authCredential = GoogleAuthProvider.getCredential(account.idToken, null)
+        firebaseAuth.signInWithCredential(authCredential).let {
+            it.addOnSuccessListener(this) {
+                handleFirebaseAuthSuccess(it)
+            }
+            it.addOnFailureListener(this) {
+                it.cause.toString()
+            }
+        }
+    }
+
+    private fun handleFirebaseAuthSuccess(authResult: AuthResult) {
+        authResult.user.getIdToken(false).let {
+            if (it.isSuccessful) {
+                Log.d("#トークン", it.result.token.toString())
+//                loginViewModel.auth(it.result.token!!)
+            }
         }
     }
 

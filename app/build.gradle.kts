@@ -38,6 +38,7 @@ dependencies {
     implementation("com.android.support:design:27.1.1")
     implementation("com.google.firebase:firebase-core:16.0.1")
     implementation("com.google.android.gms:play-services-auth:15.0.1")
+    implementation("com.google.firebase:firebase-auth:16.0.2")
     implementation("com.google.dagger:dagger:2.16")
     implementation("com.google.dagger:dagger-android:2.16")
     implementation("com.google.dagger:dagger-android-support:2.16")
