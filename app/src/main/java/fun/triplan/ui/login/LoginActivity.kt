@@ -3,20 +3,14 @@ package `fun`.triplan.ui.login
 import `fun`.triplan.R
 import `fun`.triplan.di.ViewModelFactory
 import `fun`.triplan.ui.BaseActivity
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
-import android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
-import android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-import android.view.View.SYSTEM_UI_FLAG_IMMERSIVE
-import android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-import android.view.View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-import android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-import android.view.View.SYSTEM_UI_FLAG_LOW_PROFILE
+import android.view.View.*
+import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -41,7 +35,7 @@ class LoginActivity : BaseActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    //TODO: ここもInjectできるようにする
+
     private val loginViewModel: LoginViewModel by lazy {
         ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
     }
@@ -61,7 +55,8 @@ class LoginActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout
+                .activity_login)
         login_button.setOnClickListener {
             startActivityForResult(googleSignInClient.signInIntent, REQUEST_CODE_SIGN_IN)
         }
@@ -82,8 +77,6 @@ class LoginActivity : BaseActivity() {
         try {
             val account = completedTask.getResult(ApiException::class.java)
             firebaseAuthWithGoogle(account)
-//            loginViewModel.auth(completedTask.result.idToken!!)
-
         } catch (e: ApiException) {
             Log.d("エラー", e.statusCode.toString())
         }

@@ -1,16 +1,16 @@
 package `fun`.triplan.ui.login
 
-import `fun`.triplan.data.UserRepository
-import android.arch.lifecycle.ViewModel
+import `fun`.triplan.data.SessionRepository
+import androidx.lifecycle.ViewModel
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
-        private val userRepository: UserRepository) : ViewModel() {
+        private val sessionRepository: SessionRepository) : ViewModel() {
 
     /**
      * idToken
      */
     fun auth(idToken: String) {
-        userRepository.print(idToken)
+        sessionRepository.print(idToken)
     }
 }

@@ -1,4 +1,7 @@
+import com.android.build.gradle.ProguardFiles.getDefaultProguardFile
+import org.gradle.internal.impldep.com.amazonaws.PredefinedClientConfigurations.defaultConfig
 import org.jetbrains.kotlin.config.KotlinCompilerVersion
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
     id("com.android.application")
@@ -8,11 +11,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion(27)
+    compileSdkVersion(28)
     defaultConfig {
         applicationId = "fun.triplan"
         minSdkVersion(21)
-        targetSdkVersion(27)
+        targetSdkVersion(28)
         versionCode = 1
         versionName = "1.0"
         vectorDrawables.useSupportLibrary = true
@@ -30,25 +33,38 @@ android {
     }
 }
 
+
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(kotlin("stdlib-jdk7", KotlinCompilerVersion.VERSION))
-    implementation("com.android.support:appcompat-v7:27.1.1")
-    implementation("com.android.support.constraint:constraint-layout:1.1.2")
-    implementation("com.android.support:design:27.1.1")
+
+    // UI
+    implementation("androidx.appcompat:appcompat:1.0.0-rc01")
+    implementation("androidx.constraintlayout:constraintlayout:1.1.2")
+    implementation("com.google.android.material:material:1.0.0-rc01")
+
+    // Firebase
     implementation("com.google.firebase:firebase-core:16.0.1")
-    implementation("com.google.android.gms:play-services-auth:15.0.1")
-    implementation("com.google.firebase:firebase-auth:16.0.2")
-    implementation("com.google.dagger:dagger:2.16")
+    implementation("com.google.android.gms:play-services-auth:16.0.0")
+    implementation("com.google.firebase:firebase-auth:16.0.3")
+
+    // Dagger
     implementation("com.google.dagger:dagger-android:2.16")
     implementation("com.google.dagger:dagger-android-support:2.16")
     kapt("com.google.dagger:dagger-compiler:2.16")
     kapt("com.google.dagger:dagger-android-processor:2.16")
-    implementation("android.arch.lifecycle:extensions:1.1.1")
-    kapt("android.arch.lifecycle:compiler:1.1.1")
+
+    // AAC
+    implementation("androidx.lifecycle:lifecycle-extensions:2.0.0-rc01")
+    kapt("androidx.lifecycle:lifecycle-compiler:2.0.0-rc01")
+
+    // Util
+    implementation("androidx.core:core-ktx:1.0.0-rc01")
+
+
     testImplementation("junit:junit:4.12")
-    androidTestImplementation("com.android.support.test:runner:1.0.2")
-    androidTestImplementation("com.android.support.test.espresso:espresso-core:3.0.2")
+    androidTestImplementation("androidx.test:runner:1.1.0-alpha4")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.1.0-alpha4")
 }
 
 

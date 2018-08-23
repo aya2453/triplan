@@ -1,10 +1,10 @@
 package `fun`.triplan.di
 
 import `fun`.triplan.R
-import `fun`.triplan.data.UserRepository
+import `fun`.triplan.data.SessionRepository
 import `fun`.triplan.ui.login.LoginActivity
 import `fun`.triplan.ui.login.LoginViewModel
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -28,7 +28,7 @@ internal object LoginActivityModule {
 
     @Provides
     @JvmStatic
-    fun provideUserRepository(): UserRepository = UserRepository()
+    fun provideSessionRepository(): SessionRepository = SessionRepository()
 
 
     @Provides
