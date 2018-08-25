@@ -1,11 +1,11 @@
 package `fun`.triplan.ui.trip
 
 import `fun`.triplan.R
-import `fun`.triplan.ui.BaseActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 
 
-class NewTripActivity : BaseActivity() {
+class NewTripActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

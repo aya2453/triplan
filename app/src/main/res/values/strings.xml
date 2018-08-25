@@ -10,4 +10,13 @@
 
     <!-- TODO:別のファイルに切り出してignoreする -->
     <string name="google_sign_in_server_client_id">428221645610-lo7slbsvpnoi8ho775uhl5ud9jcb3tn8.apps.googleusercontent.com</string>
+
+
+    <!-- 旅行作成画面 -->
+    <string name="new_trip_input_title">タイトル</string>
+    <string name="new_trip_input_notes">説明</string>
+    <string name="new_trip_input_start_date">開始日</string>
+    <string name="new_trip_input_end_date">終了日</string>
+    <string name="new_trip_hint_title">e.g.北陸旅行</string>
+    <string name="new_trip_hint_note">e.g.車で黒部ダム〜飛騨高山〜白川郷〜金沢を巡る旅</string>
 </resources>

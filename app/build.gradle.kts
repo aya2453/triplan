@@ -31,6 +31,11 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), file("proguard-rules.pro"))
         }
     }
+
+    dataBinding {
+        isEnabled = true
+    }
+
 }
 
 
