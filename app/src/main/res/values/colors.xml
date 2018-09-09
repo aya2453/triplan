@@ -3,8 +3,11 @@
     <color name="colorPrimary">#71cac4</color>
     <color name="colorPrimaryDark">#3d9994</color>
     <color name="colorAccent">#EE746F</color>
+    <color name="colorAccent_pressed">#EC5A54</color>
 
     <color name="black_overlay">#66000000</color>
+    <color name="disabled_gray">#D3D3D3</color>
+    <color name="disabled_gray_text">#979797</color>
 
     <color name="bg_light">#F2F3F6</color>
     <color name="ic_gray">#5C6067</color>

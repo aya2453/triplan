@@ -1,180 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg_light"
     tools:context=".ui.trip.NewTripActivity">
 
-    <!-- TODO 似たような指定が多いのでstyleにまとめる-->
+    <data>
 
-    <View
-        android:id="@+id/new_trip_background1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/common_16dp"
-        android:background="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/new_trip_edittext_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <variable
+            name="viewModel"
+            type="fun.triplan.ui.trip.NewTripViewModel" />
+    </data>
 
-    <ImageView
-        android:id="@+id/new_trip_ic_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/common_16dp"
-        android:src="@drawable/ic_round_label"
-        android:tint="@color/ic_gray"
-        app:layout_constraintBottom_toBottomOf="@+id/new_trip_edittext_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/new_trip_background1" />
+    <fun.triplan.ui.common.ValidationTextInputLayoutWrapperLayout
+        android:id="@+id/validation_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_light">
 
-    <TextView
-        android:id="@+id/new_trip_text_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/common_16dp"
-        android:layout_marginTop="@dimen/common_8dp"
-        android:text="@string/new_trip_input_title"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/text_size_12"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/new_trip_ic_label"
-        app:layout_constraintTop_toTopOf="@id/new_trip_background1" />
+        <!-- TODO 似たような指定が多いのでstyleにまとめる-->
 
-    <EditText
-        android:id="@+id/new_trip_edittext_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/common_16dp"
-        android:hint="@string/new_trip_hint_title"
-        android:inputType="textNoSuggestions"
-        android:textSize="@dimen/text_size_14"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/new_trip_text_title"
-        app:layout_constraintTop_toBottomOf="@+id/new_trip_text_title" />
+        <View
+            android:id="@+id/new_trip_background1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/common_16dp"
+            android:background="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/new_trip_edittext_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/new_trip_background2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/new_trip_edittext_notes"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_trip_background1" />
+        <ImageView
+            android:id="@+id/new_trip_ic_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_16dp"
+            android:src="@drawable/ic_round_label"
+            android:tint="@color/ic_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/new_trip_edittext_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/new_trip_background1" />
 
-    <ImageView
-        android:id="@+id/new_trip_ic_notes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/common_16dp"
-        android:src="@drawable/ic_round_notes"
-        android:tint="@color/ic_gray"
-        app:layout_constraintBottom_toBottomOf="@+id/new_trip_edittext_notes"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/new_trip_background2" />
-
-    <TextView
-        android:id="@+id/new_trip_text_notes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/common_16dp"
-        android:layout_marginTop="@dimen/common_8dp"
-        android:text="@string/new_trip_input_notes"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/text_size_12"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/new_trip_ic_notes"
-        app:layout_constraintTop_toTopOf="@id/new_trip_background2" />
-
-    <EditText
-        android:id="@+id/new_trip_edittext_notes"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/common_16dp"
-        android:hint="@string/new_trip_hint_note"
-        android:inputType="textMultiLine|textNoSuggestions"
-        android:lineSpacingExtra="@dimen/common_6dp"
-        android:minLines="2"
-        android:textSize="@dimen/text_size_14"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/new_trip_text_notes"
-        app:layout_constraintTop_toBottomOf="@id/new_trip_text_notes" />
+        <TextView
+            android:id="@+id/new_trip_text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_16dp"
+            android:layout_marginTop="@dimen/common_8dp"
+            android:text="@string/new_trip_input_title"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_size_12"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/new_trip_ic_label"
+            app:layout_constraintTop_toTopOf="@id/new_trip_background1" />
 
 
-    <View
-        android:id="@+id/new_trip_background3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/common_16dp"
-        android:background="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/new_trip_edittext_end_date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/new_trip_background2" />
+        <fun.triplan.ui.common.ValidationTextInputLayout
+            android:id="@+id/new_trip_edittext_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/common_16dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:errorEnabled="true"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/new_trip_text_title"
+            app:layout_constraintTop_toBottomOf="@+id/new_trip_text_title"
+            app:required="true">
 
-    <ImageView
-        android:id="@+id/new_trip_ic_date_range"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/common_16dp"
-        android:src="@drawable/ic_round_date_range"
-        android:tint="@color/ic_gray"
-        app:layout_constraintBottom_toBottomOf="@+id/new_trip_edittext_start_date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/new_trip_background3" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/new_trip_edittext_title_inner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/new_trip_hint_title"
+                android:inputType="textNoSuggestions"
+                android:maxLength="20"
+                android:textSize="@dimen/text_size_14" />
 
-    <TextView
-        android:id="@+id/new_trip_text_start_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/common_16dp"
-        android:layout_marginTop="@dimen/common_8dp"
-        android:text="@string/new_trip_input_start_date"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/text_size_12"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/new_trip_ic_date_range"
-        app:layout_constraintTop_toTopOf="@id/new_trip_background3" />
+        </fun.triplan.ui.common.ValidationTextInputLayout>
 
-    <!-- TODO 動的にデフォルト日付はその日に設定する-->
-    <EditText
-        android:id="@+id/new_trip_edittext_start_date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/common_16dp"
-        android:hint="2018年01月01日"
-        android:inputType="date"
-        android:textSize="@dimen/text_size_14"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/new_trip_text_start_date"
-        app:layout_constraintTop_toBottomOf="@id/new_trip_text_start_date" />
+        <View
+            android:id="@+id/new_trip_background2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/new_trip_edittext_notes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/new_trip_background1" />
 
-    <TextView
-        android:id="@+id/new_trip_text_end_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/common_8dp"
-        android:text="@string/new_trip_input_end_date"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/text_size_12"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/new_trip_edittext_start_date"
-        app:layout_constraintTop_toBottomOf="@id/new_trip_edittext_start_date" />
+        <ImageView
+            android:id="@+id/new_trip_ic_notes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_16dp"
+            android:src="@drawable/ic_round_notes"
+            android:tint="@color/ic_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/new_trip_edittext_notes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/new_trip_background2" />
 
-    <EditText
-        android:id="@+id/new_trip_edittext_end_date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/common_16dp"
-        android:hint="2018年01月02日"
-        android:inputType="date"
-        android:textSize="@dimen/text_size_14"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/new_trip_text_end_date"
-        app:layout_constraintTop_toBottomOf="@id/new_trip_text_end_date" />
+        <TextView
+            android:id="@+id/new_trip_text_notes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_16dp"
+            android:layout_marginTop="@dimen/common_8dp"
+            android:text="@string/new_trip_input_notes"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_size_12"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/new_trip_ic_notes"
+            app:layout_constraintTop_toTopOf="@id/new_trip_background2" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/new_trip_edittext_notes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/common_16dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="80"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/new_trip_text_notes"
+            app:layout_constraintTop_toBottomOf="@id/new_trip_text_notes">
+
+            <EditText
+                android:id="@+id/new_trip_edittext_notes_inner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/new_trip_hint_note"
+                android:inputType="textMultiLine|textNoSuggestions"
+                android:lineSpacingExtra="@dimen/common_6dp"
+                android:minLines="2"
+                android:textSize="@dimen/text_size_14" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <View
+            android:id="@+id/new_trip_background3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/common_16dp"
+            android:background="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/new_trip_edittext_end_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/new_trip_background2" />
+
+        <ImageView
+            android:id="@+id/new_trip_ic_date_range"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_16dp"
+            android:src="@drawable/ic_round_date_range"
+            android:tint="@color/ic_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/new_trip_edittext_start_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/new_trip_background3" />
+
+        <TextView
+            android:id="@+id/new_trip_text_start_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_16dp"
+            android:layout_marginTop="@dimen/common_8dp"
+            android:text="@string/new_trip_input_start_date"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_size_12"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/new_trip_ic_date_range"
+            app:layout_constraintTop_toTopOf="@id/new_trip_background3" />
+
+        <!-- TODO 動的にデフォルト日付はその日に設定する-->
+        <EditText
+            android:id="@+id/new_trip_edittext_start_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/common_16dp"
+            android:hint="2018年01月01日"
+            android:inputType="date"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/new_trip_text_start_date"
+            app:layout_constraintTop_toBottomOf="@id/new_trip_text_start_date" />
+
+        <TextView
+            android:id="@+id/new_trip_text_end_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_8dp"
+            android:text="@string/new_trip_input_end_date"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_size_12"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/new_trip_edittext_start_date"
+            app:layout_constraintTop_toBottomOf="@id/new_trip_edittext_start_date" />
+
+        <EditText
+            android:id="@+id/new_trip_edittext_end_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/common_16dp"
+            android:hint="2018年01月02日"
+            android:inputType="date"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/new_trip_text_end_date"
+            app:layout_constraintTop_toBottomOf="@id/new_trip_text_end_date" />
+
+
+        <Button
+            android:id="@+id/submit_button"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/common_55dp"
+            android:background="@drawable/selector_main_enabled_bg"
+            android:enabled="@{viewModel.isValid()}"
+            android:text="@string/new_trip_submit_button"
+            android:textColor="@drawable/selector_main_enabled_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </fun.triplan.ui.common.ValidationTextInputLayoutWrapperLayout>
+</layout>

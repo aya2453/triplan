@@ -33,7 +33,9 @@
         <!-- <activity android:name=".presenter.login.LoginActivity"> -->
         <!--  -->
         <!-- </activity> -->
-        <activity android:name=".ui.trip.NewTripActivity" />
+        <activity
+            android:name=".ui.trip.NewTripActivity"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

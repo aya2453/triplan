@@ -44,12 +44,12 @@ dependencies {
     implementation(kotlin("stdlib-jdk7", KotlinCompilerVersion.VERSION))
 
     // UI
-    implementation("androidx.appcompat:appcompat:1.0.0-rc01")
-    implementation("androidx.constraintlayout:constraintlayout:1.1.2")
-    implementation("com.google.android.material:material:1.0.0-rc01")
+    implementation("androidx.appcompat:appcompat:1.0.0-rc02")
+    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
+    implementation("com.google.android.material:material:1.0.0-rc02")
 
     // Firebase
-    implementation("com.google.firebase:firebase-core:16.0.1")
+    implementation("com.google.firebase:firebase-core:16.0.3")
     implementation("com.google.android.gms:play-services-auth:16.0.0")
     implementation("com.google.firebase:firebase-auth:16.0.3")
 
@@ -64,7 +64,7 @@ dependencies {
     kapt("androidx.lifecycle:lifecycle-compiler:2.0.0-rc01")
 
     // Util
-    implementation("androidx.core:core-ktx:1.0.0-rc01")
+    implementation("androidx.core:core-ktx:1.0.0-rc02")
 
 
     testImplementation("junit:junit:4.12")

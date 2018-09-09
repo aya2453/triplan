@@ -55,8 +55,7 @@ class LoginActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout
-                .activity_login)
+        setContentView(R.layout.activity_login)
         login_button.setOnClickListener {
             startActivityForResult(googleSignInClient.signInIntent, REQUEST_CODE_SIGN_IN)
         }
@@ -88,11 +87,11 @@ class LoginActivity : BaseActivity() {
      */
     private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
         val authCredential = GoogleAuthProvider.getCredential(account.idToken, null)
-        firebaseAuth.signInWithCredential(authCredential).let {
-            it.addOnSuccessListener(this) {
+        firebaseAuth.signInWithCredential(authCredential).let { task ->
+            task.addOnSuccessListener(this) {
                 handleFirebaseAuthSuccess(it)
             }
-            it.addOnFailureListener(this) {
+            task.addOnFailureListener(this) {
                 it.cause.toString()
             }
         }

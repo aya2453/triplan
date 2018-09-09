@@ -38,7 +38,7 @@ internal object LoginActivityModule {
 }
 
 @Module
-internal abstract class ViewModelBuilder {
+internal abstract class LoginViewModelBuilder {
     @Binds
     @IntoMap
     @ViewModelKey(LoginViewModel::class)

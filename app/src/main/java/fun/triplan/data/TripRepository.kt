@@ -2,10 +2,10 @@ package `fun`.triplan.data
 
 import android.util.Log
 
-class TripRepository {
+class SessionRepository {
 
     fun print(idToken: String) {
         // TODO:API
-        Log.d("#", "作成")
+        Log.d("#トークン", idToken)
     }
 }

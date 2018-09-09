@@ -18,8 +18,6 @@ class TripListActivity : AppCompatActivity() {
 
         fab.setOnClickListener { view ->
             startActivity(Intent(this, NewTripActivity::class.java))
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
         }
     }
 
