@@ -11,11 +11,11 @@
 
     <declare-styleable name="ValidationTextInputLayout">
         <attr name="required" format="boolean" />
-        <!--<attr name="validation_type">-->
-            <!--<enum name="post_code" value="0" />-->
-            <!--<enum name="email" value="1" />-->
-        <!--</attr>-->
-        <attr name="error_text" format="string" />
+        <attr name="validationType">
+            <enum name="email" value="0" />
+            <enum name="password" value="1" />
+        </attr>
+        <attr name="errorText" format="string" />
     </declare-styleable>
 
 </resources>

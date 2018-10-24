@@ -10,13 +10,10 @@ class NewTripViewModel @Inject constructor(
         private val tripRepository: TripRepository) : ViewModel() {
 
     var isValid: ObservableBoolean = ObservableBoolean(false)
-    var trip: Trip = Trip()
 
 
-    fun requestNewTrip(trip: Trip) {
-        Log.d("#", "リクエスト")
+    fun register(email: String, password: String) {
+        // リクエスト
     }
-
-    data class Trip(var title: String = "")
 
 }

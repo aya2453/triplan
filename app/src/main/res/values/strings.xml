@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">triplan</string>
+    <string name="app_name">Sample</string>
     <string name="title_activity_main2">MainActivity2</string>
 
     <string name="title_activity_login">LoginActivity</string>
@@ -24,4 +24,6 @@
 
     <!-- バリデーション -->
     <string name="validation_required">必須入力です</string>
+    <string name="validation_mail">形式が不正です</string>
+    <string name="validation_password">半角英数字6~10文字で入力してください</string>
 </resources>

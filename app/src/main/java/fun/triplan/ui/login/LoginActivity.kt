@@ -1,6 +1,7 @@
 package `fun`.triplan.ui.login
 
 import `fun`.triplan.R
+import `fun`.triplan.R.id.login_button
 import `fun`.triplan.di.ViewModelFactory
 import `fun`.triplan.ui.BaseActivity
 import android.content.Intent
@@ -10,6 +11,8 @@ import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
 import android.view.View.*
+import androidx.core.app.ActivityCompat.startActivityForResult
+import androidx.databinding.DataBindingUtil.setContentView
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -75,7 +78,9 @@ class LoginActivity : BaseActivity() {
     private fun handleSignIn(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-            firebaseAuthWithGoogle(account)
+            account?.let {
+                firebaseAuthWithGoogle(account)
+            }
         } catch (e: ApiException) {
             Log.d("エラー", e.statusCode.toString())
         }
@@ -88,7 +93,7 @@ class LoginActivity : BaseActivity() {
     private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
         val authCredential = GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(authCredential).let { task ->
-            task.addOnSuccessListener(this) {
+            task.addOnSuccessListener(this) { it ->
                 handleFirebaseAuthSuccess(it)
             }
             task.addOnFailureListener(this) {
@@ -100,8 +105,8 @@ class LoginActivity : BaseActivity() {
     private fun handleFirebaseAuthSuccess(authResult: AuthResult) {
         authResult.user.getIdToken(false).let {
             if (it.isSuccessful) {
-                Log.d("#トークン", it.result.token.toString())
-                loginViewModel.auth(it.result.token!!)
+                Log.d("#トークン", it.result?.token.toString())
+                loginViewModel.auth(it.result?.token!!)
             }
         }
     }

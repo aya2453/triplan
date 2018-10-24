@@ -12,16 +12,20 @@ class ValidationTextInputLayoutWrapperLayout @JvmOverloads constructor(context: 
 
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
-        for (i in 0..childCount) {
-            val view = getChildAt(i)
-            if (view is ValidationTextInputLayout) {
-                validationTextInputLayouts.add(view)
+        if (validationTextInputLayouts.isEmpty()) {
+            for (i in 0..childCount) {
+                val view = getChildAt(i)
+                if (view is ValidationTextInputLayout) {
+                    validationTextInputLayouts.add(view)
+                }
             }
         }
         super.onLayout(changed, left, top, right, bottom)
     }
 
-    fun valid(): Boolean = validationTextInputLayouts.all {
-        it.validate()
+    fun valid(): Boolean {
+        return validationTextInputLayouts.filter {
+            !it.validate()
+        }.isEmpty()
     }
 }
