@@ -12,6 +12,7 @@ class NewTripViewModel @Inject constructor(
     var isValid: ObservableBoolean = ObservableBoolean(false)
 
 
+
     fun register(email: String, password: String) {
         // リクエスト
     }

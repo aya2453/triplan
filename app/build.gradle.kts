@@ -44,12 +44,12 @@ dependencies {
     implementation(kotlin("stdlib-jdk7", KotlinCompilerVersion.VERSION))
 
     // UI
-    implementation("androidx.appcompat:appcompat:1.0.0")
+    implementation("androidx.appcompat:appcompat:1.0.2")
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
     implementation("com.google.android.material:material:1.0.0")
 
     // Firebase
-    implementation("com.google.firebase:firebase-core:16.0.4")
+    implementation("com.google.firebase:firebase-core:16.0.5")
     implementation("com.google.android.gms:play-services-auth:16.0.1")
     implementation("com.google.firebase:firebase-auth:16.0.5")
 
@@ -64,12 +64,17 @@ dependencies {
     kapt("androidx.lifecycle:lifecycle-compiler:2.0.0")
 
     // Util
-    implementation("androidx.core:core-ktx:1.0.0")
+    implementation("androidx.core:core-ktx:1.0.1")
+
+    implementation ("com.squareup.retrofit2:retrofit:2.4.0")
+    implementation ("com.squareup.moshi:moshi:1.7.0")
+    implementation ("com.squareup.retrofit2:converter-moshi:2.4.0")
+    kapt ("com.squareup.moshi:moshi-kotlin-codegen:1.7.0")
 
 
     testImplementation("junit:junit:4.12")
-    androidTestImplementation("androidx.test:runner:1.1.0-beta02")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.1.0-beta02")
+    androidTestImplementation("androidx.test:runner:1.1.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.1.0")
 }
 
 
