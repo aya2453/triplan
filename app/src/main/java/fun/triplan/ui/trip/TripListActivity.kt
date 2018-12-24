@@ -16,7 +16,7 @@ class TripListActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
 
-        fab.setOnClickListener { view ->
+        fab.setOnClickListener {
             startActivity(Intent(this, NewTripActivity::class.java))
         }
     }
