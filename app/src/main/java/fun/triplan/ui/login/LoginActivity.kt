@@ -4,6 +4,7 @@ import `fun`.triplan.R
 import `fun`.triplan.R.id.login_button
 import `fun`.triplan.di.ViewModelFactory
 import `fun`.triplan.ui.BaseActivity
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +20,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
@@ -94,7 +96,8 @@ class LoginActivity : BaseActivity() {
         val authCredential = GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(authCredential).let { task ->
             task.addOnSuccessListener(this) { it ->
-                handleFirebaseAuthSuccess(it)
+                setResult(Activity.RESULT_OK, intent)
+                finish()
             }
             task.addOnFailureListener(this) {
                 it.cause.toString()

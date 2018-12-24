@@ -70,7 +70,7 @@ class ValidationTextInputLayout @JvmOverloads constructor(context: Context,
                 return Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=\\S+\$).{6,10}").matcher(value).matches()
             }
         },
-        NULL(-1, -1) {
+        NULL(-1, R.string.validation_required) {
             override fun validate(value: String): Boolean {
                 return true
             }
@@ -96,7 +96,7 @@ class ValidationTextInputLayout @JvmOverloads constructor(context: Context,
                 // 各種バリデーション
                 if (!validateType.validate(text!!)) {
                     val error = if (errorText.isNullOrBlank()) defaultErrorText else errorText
-                    return ValidationResult.Failed(error!!)
+                    return ValidationResult.Failed(error)
                 }
 
                 return ValidationResult.Success
