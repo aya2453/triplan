@@ -10,6 +10,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_triplist.*
 
+// TODO:DI設定
 class TripListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

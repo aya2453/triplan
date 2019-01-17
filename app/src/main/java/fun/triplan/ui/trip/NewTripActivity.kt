@@ -28,11 +28,6 @@ class NewTripActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val currentUser = FirebaseAuth.getInstance().currentUser
-//        if (currentUser == null) {
-//            // ログインしていない場合は、認証画面へリダイレクトさせる
-//            startActivity(Intent(this, LoginActivity::class.java))
-//        }
         val viewModel = ViewModelProviders.of(this, viewModelFactory).get(NewTripViewModel::class.java)
         val binding = DataBindingUtil.setContentView<ActivityNewTripBinding>(this, R.layout.activity_new_trip)
         binding.viewModel = viewModel

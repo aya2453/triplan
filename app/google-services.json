@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "428221645610",
+    "firebase_url": "https://triplan-debug-34eb3.firebaseio.com",
+    "project_id": "triplan-debug-34eb3",
+    "storage_bucket": "triplan-debug-34eb3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428221645610:android:52a1797b4bd9f3e2",
+        "android_client_info": {
+          "package_name": "fun.triplan.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428221645610-5pd8ud05ebj1v8fvsmoatoooscbmethv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fun.triplan.debug",
+            "certificate_hash": "a7faaf8c461be77a7af512bddaf7c50e53a39f42"
+          }
+        },
+        {
+          "client_id": "428221645610-algr7teatv4rpsjjpbaiq8lke7v0t4jr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBafgZkF-MJ4JX98hgf8arsykYyKSOUrKg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428221645610-algr7teatv4rpsjjpbaiq8lke7v0t4jr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
