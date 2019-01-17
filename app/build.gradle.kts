@@ -54,10 +54,10 @@ dependencies {
     implementation("com.google.firebase:firebase-auth:16.1.0")
 
     // Dagger
-    implementation("com.google.dagger:dagger-android:2.16")
-    implementation("com.google.dagger:dagger-android-support:2.16")
-    kapt("com.google.dagger:dagger-compiler:2.16")
-    kapt("com.google.dagger:dagger-android-processor:2.16")
+    implementation("com.google.dagger:dagger-android:2.20")
+    implementation("com.google.dagger:dagger-android-support:2.20")
+    kapt("com.google.dagger:dagger-compiler:2.20")
+    kapt("com.google.dagger:dagger-android-processor:2.20")
 
     // AAC
     implementation("androidx.lifecycle:lifecycle-extensions:2.0.0")
