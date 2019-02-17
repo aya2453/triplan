@@ -2,6 +2,7 @@ package `fun`.triplan.di
 
 import `fun`.triplan.ui.login.LoginActivity
 import `fun`.triplan.ui.trip.NewTripActivity
+import `fun`.triplan.ui.trip.UserActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -14,5 +15,8 @@ internal abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [NewTripActivityModule::class, NewTripViewModelBuilder::class])
     internal abstract fun bindNewTripActivity(): NewTripActivity
+
+    @ContributesAndroidInjector(modules = [UserActivityModule::class, UserViewModelBuilder::class])
+    internal abstract fun bindUserActivity(): UserActivity
 
 }
