@@ -16,8 +16,9 @@
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
-            android:name=".ui.trip.TripListActivity"
+            android:name=".ui.TriplanActivity"
             android:label="@string/title_activity_trip"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

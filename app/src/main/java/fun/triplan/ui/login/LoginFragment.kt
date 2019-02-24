@@ -1,38 +1,36 @@
 package `fun`.triplan.ui.login
 
 import `fun`.triplan.R
-import `fun`.triplan.R.id.login_button
 import `fun`.triplan.di.ViewModelFactory
-import `fun`.triplan.ui.BaseActivity
-import android.app.Activity
+import `fun`.triplan.di.ViewModelKey
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.GestureDetector
-import android.view.GestureDetector.SimpleOnGestureListener
-import android.view.MotionEvent
-import android.view.View.*
-import androidx.core.app.ActivityCompat.startActivityForResult
-import androidx.databinding.DataBindingUtil.setContentView
+import android.view.*
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import kotlinx.android.synthetic.main.activity_login.*
+import dagger.Binds
+import dagger.Module
+import dagger.Provides
+import dagger.android.ContributesAndroidInjector
+import dagger.android.support.DaggerFragment
+import dagger.multibindings.IntoMap
+import kotlinx.android.synthetic.main.fragment_login.*
 import javax.inject.Inject
 
-
-/**
- * ログイン画面
- */
-class LoginActivity : BaseActivity() {
-
+class LoginFragment : DaggerFragment() {
+    @Inject
+    lateinit var navController: NavController
     @Inject
     lateinit var googleSignInClient: GoogleSignInClient
     @Inject
@@ -46,25 +44,27 @@ class LoginActivity : BaseActivity() {
     }
 
     private val gestureDetector by lazy {
-        val simpleOnGestureListener = object : SimpleOnGestureListener() {
+        val simpleOnGestureListener = object : GestureDetector.SimpleOnGestureListener() {
             override fun onSingleTapUp(event: MotionEvent): Boolean {
                 toggle(!systemUiVisible)
                 return super.onSingleTapUp(event)
             }
         }
-        GestureDetector(this, simpleOnGestureListener)
+        GestureDetector(context, simpleOnGestureListener)
     }
 
     private var systemUiVisible: Boolean = false
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_login, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         login_button.setOnClickListener {
             startActivityForResult(googleSignInClient.signInIntent, REQUEST_CODE_SIGN_IN)
         }
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -95,11 +95,10 @@ class LoginActivity : BaseActivity() {
     private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
         val authCredential = GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(authCredential).let { task ->
-            task.addOnSuccessListener(this) { it ->
-                setResult(Activity.RESULT_OK, intent)
-                finish()
+            task.addOnSuccessListener(activity!!) {
+                navController.popBackStack()
             }
-            task.addOnFailureListener(this) {
+            task.addOnFailureListener(activity!!) {
                 it.cause.toString()
             }
         }
@@ -114,17 +113,17 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        super.onWindowFocusChanged(hasFocus)
-        if (hasFocus) {
-            toggle()
-        }
-    }
-
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        gestureDetector.onTouchEvent(event)
-        return super.onTouchEvent(event)
-    }
+//    override fun onWindowFocusChanged(hasFocus: Boolean) {
+//        super.onWindowFocusChanged(hasFocus)
+//        if (hasFocus) {
+//            toggle()
+//        }
+//    }
+//
+//    override fun onTouchEvent(event: MotionEvent?): Boolean {
+//        gestureDetector.onTouchEvent(event)
+//        return super.onTouchEvent(event)
+//    }
 
     /**
      * システムUI(ステータスバー/ナビゲーションバー)の表示を切り替える
@@ -141,27 +140,57 @@ class LoginActivity : BaseActivity() {
      * システムUI(ステータスバー/ナビゲーションバー)を非表示にする
      */
     private fun hideSystemUi() {
-        window.decorView.systemUiVisibility =
-                SYSTEM_UI_FLAG_IMMERSIVE or
-                SYSTEM_UI_FLAG_LOW_PROFILE or
-                SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
-                SYSTEM_UI_FLAG_LAYOUT_STABLE or
-                SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
-                SYSTEM_UI_FLAG_HIDE_NAVIGATION or
-                SYSTEM_UI_FLAG_FULLSCREEN
+        activity?.window?.decorView?.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_IMMERSIVE or
+                        View.SYSTEM_UI_FLAG_LOW_PROFILE or
+                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
+                        View.SYSTEM_UI_FLAG_FULLSCREEN
     }
 
     /**
      * システムUI(ステータスバー/ナビゲーションバー)を表示する
      */
     private fun showSystemUi() {
-        window.decorView.systemUiVisibility =
-                SYSTEM_UI_FLAG_LAYOUT_STABLE or
-                SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
-                SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        activity?.window?.decorView?.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
     }
 
     companion object {
         const val REQUEST_CODE_SIGN_IN: Int = 1;
+    }
+}
+
+@Module
+abstract class LoginFragmentBuilder {
+    @ContributesAndroidInjector(modules = [LoginFragmentModule::class])
+    abstract fun contributeLoginFragment(): LoginFragment
+}
+
+@Module
+abstract class LoginFragmentModule {
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel::class)
+    abstract fun bindLoginFragmentViewModel(viewModel: LoginViewModel): ViewModel
+
+    @Module
+    companion object {
+        @Provides
+        @JvmStatic
+        fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
+
+        @Provides
+        @JvmStatic
+        fun provideGoogleSignInClient(fragment2: LoginFragment): GoogleSignInClient {
+            val gso = GoogleSignInOptions.Builder()
+                    .requestIdToken(fragment2.getString(R.string.google_sign_in_server_client_id))
+                    .build()
+            return GoogleSignIn.getClient(fragment2.context!!, gso)
+        }
     }
 }
