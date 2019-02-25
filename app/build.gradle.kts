@@ -34,8 +34,11 @@ android {
         isEnabled = true
     }
 
-}
+    sourceSets {
+        getByName("main").java.srcDirs("src/main/kotlin")
+    }
 
+}
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
