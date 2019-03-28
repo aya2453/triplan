@@ -1,13 +1,13 @@
 package `fun`.triplan.ui.login
 
 import `fun`.triplan.R
-import `fun`.triplan.di.ViewModelFactory
 import `fun`.triplan.di.ViewModelKey
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -36,7 +36,7 @@ class LoginFragment : DaggerFragment() {
     @Inject
     lateinit var firebaseAuth: FirebaseAuth
     @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
 
     private val loginViewModel: LoginViewModel by lazy {
@@ -180,9 +180,6 @@ abstract class LoginFragmentModule {
 
     @Module
     companion object {
-        @Provides
-        @JvmStatic
-        fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
 
         @Provides
         @JvmStatic

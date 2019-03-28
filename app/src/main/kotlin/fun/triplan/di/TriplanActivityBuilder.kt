@@ -4,8 +4,8 @@ import `fun`.triplan.R
 import `fun`.triplan.ui.TriplanActivity
 import `fun`.triplan.ui.login.LoginFragmentBuilder
 import `fun`.triplan.ui.trip.NewTripFragmentBuilder
-import `fun`.triplan.ui.trip.TripListFragmentBuilder
 import `fun`.triplan.ui.trip.UserFragmentBuilder
+import `fun`.triplan.ui.triplist.TripListFragmentBuilder
 import androidx.navigation.Navigation
 import dagger.Module
 import dagger.Provides
@@ -20,9 +20,9 @@ internal abstract class TriplanActivityBuilder {
 }
 
 @Module(includes = [
-    TripListFragmentBuilder::class,
     LoginFragmentBuilder::class,
     NewTripFragmentBuilder::class,
+    TripListFragmentBuilder::class,
     UserFragmentBuilder::class])
 abstract class TriplanActivityModule {
     @Module

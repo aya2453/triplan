@@ -6,6 +6,7 @@ plugins {
     kotlin("android.extensions")
     kotlin("kapt")
     id("androidx.navigation.safeargs.kotlin")
+    id("org.sonarqube") version "2.7"
 }
 
 android {
@@ -30,6 +31,11 @@ android {
         }
     }
 
+    lintOptions {
+        isCheckReleaseBuilds = false
+        isAbortOnError = false
+    }
+
     dataBinding {
         isEnabled = true
     }
@@ -48,13 +54,13 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.0.2")
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
     implementation("com.google.android.material:material:1.0.0")
-    implementation("android.arch.navigation:navigation-fragment:1.0.0-rc01")
-    implementation("android.arch.navigation:navigation-ui:1.0.0-rc01")
+    implementation("android.arch.navigation:navigation-fragment:1.0.0")
+    implementation("android.arch.navigation:navigation-ui:1.0.0")
 
     // Firebase
-    implementation("com.google.firebase:firebase-core:16.0.7")
+    implementation("com.google.firebase:firebase-core:16.0.8")
     implementation("com.google.android.gms:play-services-auth:16.0.1")
-    implementation("com.google.firebase:firebase-auth:16.1.0")
+    implementation("com.google.firebase:firebase-auth:16.2.0")
 
     // Dagger
     implementation("com.google.dagger:dagger-android:2.21")

@@ -6,11 +6,16 @@
     app:startDestination="@id/triplanListFragment">
     <fragment
         android:id="@+id/triplanListFragment"
-        android:name="fun.triplan.ui.trip.TripListFragment"
+        android:name="fun.triplan.ui.triplist.TripListFragment"
         android:label="fragment_triplan_list" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="fun.triplan.ui.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/newTripFragment"
+        android:name="fun.triplan.ui.trip.NewTripFragment"
+        android:label="fragment_new_trip"
+        tools:layout="@layout/fragment_new_trip" />
 </navigation>

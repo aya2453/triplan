@@ -1,16 +1,16 @@
 package `fun`.triplan.ui.trip
 
 import `fun`.triplan.R
-import `fun`.triplan.di.ViewModelFactory
 import `fun`.triplan.ui.BaseActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import javax.inject.Inject
 
 class UserActivity : BaseActivity() {
 
     @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val viewModel by lazy { ViewModelProviders.of(this, viewModelFactory).get(UserViewModel::class.java) }
 
@@ -20,7 +20,7 @@ class UserActivity : BaseActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .add(R.id.container, UserFragment())
+                    .replace(R.id.container, UserFragment())
                     .commit()
         }
     }
