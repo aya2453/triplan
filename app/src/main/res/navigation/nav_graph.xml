@@ -7,15 +7,33 @@
     <fragment
         android:id="@+id/triplanListFragment"
         android:name="fun.triplan.ui.triplist.TripListFragment"
-        android:label="fragment_triplan_list" />
+        android:label="fragment_triplan_list">
+        <action
+            android:id="@+id/action_triList_to_login"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_triList_to_newTrip"
+            app:destination="@id/newTripFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="fun.triplan.ui.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_to_newTrip"
+            app:destination="@+id/newTripFragment" />
+    </fragment>
     <fragment
         android:id="@+id/newTripFragment"
         android:name="fun.triplan.ui.trip.NewTripFragment"
         android:label="fragment_new_trip"
-        tools:layout="@layout/fragment_new_trip" />
+        tools:layout="@layout/fragment_new_trip">
+        <action
+            android:id="@+id/action_newTrip_to_tripList"
+            app:destination="@+id/triplanListFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

@@ -32,17 +32,17 @@ class TripListFragment : BaseFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        tripListViewModel.newTripClickedEvent.observe(viewLifecycleOwner, "clickedTag", Observer { haveSignedIn ->
-            if (haveSignedIn) {
-                navController.navigate(R.id.newTripFragment)
-            } else {
-                navController.navigate(R.id.loginFragment)
-            }
-        })
         return inflater.inflate(R.layout.fragment_triplist, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        tripListViewModel.newTripClickedEvent.observe(viewLifecycleOwner, "clickedTag", Observer { haveSignedIn ->
+            if (haveSignedIn) {
+                navController.navigate(R.id.action_triList_to_newTrip)
+            } else {
+                navController.navigate(R.id.action_triList_to_login)
+            }
+        })
         fab.setOnClickListener {
             tripListViewModel.pushLoginOrNewTrip()
         }

@@ -2,9 +2,9 @@ package `fun`.triplan.ui.login
 
 import `fun`.triplan.R
 import `fun`.triplan.di.ViewModelKey
+import `fun`.triplan.ui.BaseFragment
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -23,12 +23,12 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
-import dagger.android.support.DaggerFragment
 import dagger.multibindings.IntoMap
 import kotlinx.android.synthetic.main.fragment_login.*
+import timber.log.Timber
 import javax.inject.Inject
 
-class LoginFragment : DaggerFragment() {
+class LoginFragment : BaseFragment() {
     @Inject
     lateinit var navController: NavController
     @Inject
@@ -84,7 +84,7 @@ class LoginFragment : DaggerFragment() {
                 firebaseAuthWithGoogle(account)
             }
         } catch (e: ApiException) {
-            Log.d("エラー", e.statusCode.toString())
+            Timber.d("エラー  ${e.statusCode} ")
         }
     }
 
@@ -96,7 +96,7 @@ class LoginFragment : DaggerFragment() {
         val authCredential = GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(authCredential).let { task ->
             task.addOnSuccessListener(activity!!) {
-                navController.popBackStack()
+                navController.navigate(R.id.action_login_to_newTrip)
             }
             task.addOnFailureListener(activity!!) {
                 it.cause.toString()
@@ -107,7 +107,7 @@ class LoginFragment : DaggerFragment() {
     private fun handleFirebaseAuthSuccess(authResult: AuthResult) {
         authResult.user.getIdToken(false).let {
             if (it.isSuccessful) {
-                Log.d("#トークン", it.result?.token.toString())
+                Timber.d("#トークン ${it.result?.token.toString()}")
                 loginViewModel.auth(it.result?.token!!)
             }
         }

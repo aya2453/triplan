@@ -3,6 +3,7 @@ package `fun`.triplan.ui.trip
 import `fun`.triplan.R
 import `fun`.triplan.databinding.FragmentNewTripBinding
 import `fun`.triplan.di.ViewModelKey
+import `fun`.triplan.ui.BaseFragment
 import `fun`.triplan.ui.common.afterTextChanged
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,12 +17,11 @@ import androidx.lifecycle.ViewModelProviders
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import dagger.android.support.DaggerFragment
 import dagger.multibindings.IntoMap
 import kotlinx.android.synthetic.main.fragment_new_trip.*
 import javax.inject.Inject
 
-class NewTripFragment : DaggerFragment() {
+class NewTripFragment : BaseFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory

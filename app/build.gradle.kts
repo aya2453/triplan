@@ -76,6 +76,7 @@ dependencies {
 
     // Util
     implementation("androidx.core:core-ktx:1.0.1")
+    implementation("com.jakewharton.timber:timber:4.7.1")
 
     implementation("com.squareup.retrofit2:retrofit:2.5.0")
     implementation("com.squareup.moshi:moshi:1.8.0")
