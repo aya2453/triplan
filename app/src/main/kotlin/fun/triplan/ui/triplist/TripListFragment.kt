@@ -31,11 +31,14 @@ class TripListFragment : BaseFragment() {
         ViewModelProviders.of(this, viewModelFactory).get(TripListViewModel::class.java)
     }
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.fragment_triplist, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         tripListViewModel.newTripClickedEvent.observe(viewLifecycleOwner, "clickedTag", Observer { haveSignedIn ->
             if (haveSignedIn) {
                 navController.navigate(R.id.action_triList_to_newTrip)
@@ -46,13 +49,14 @@ class TripListFragment : BaseFragment() {
         fab.setOnClickListener {
             tripListViewModel.pushLoginOrNewTrip()
         }
+
+        list_recyclerView.adapter = TripListAdapter()
     }
 
     private fun launchNewTripActivity() {
         // TODO:NewTripFragmentへの遷移
 //        startActivity(Intent(context, NewTripActivity::class.java))
     }
-
 }
 
 @Module

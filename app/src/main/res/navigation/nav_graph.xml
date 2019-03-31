@@ -7,13 +7,14 @@
     <fragment
         android:id="@+id/triplanListFragment"
         android:name="fun.triplan.ui.triplist.TripListFragment"
-        android:label="fragment_triplan_list">
-        <action
-            android:id="@+id/action_triList_to_login"
-            app:destination="@id/loginFragment" />
+        android:label="fragment_triplan_list"
+        tools:layout="@layout/fragment_triplist">
         <action
             android:id="@+id/action_triList_to_newTrip"
             app:destination="@id/newTripFragment" />
+        <action
+            android:id="@+id/action_triList_to_login"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -32,7 +33,6 @@
         <action
             android:id="@+id/action_newTrip_to_tripList"
             app:destination="@+id/triplanListFragment"
-            app:launchSingleTop="true"
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true" />
     </fragment>

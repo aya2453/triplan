@@ -51,8 +51,9 @@ dependencies {
     implementation(kotlin("stdlib-jdk7", KotlinCompilerVersion.VERSION))
 
     // UI
-    implementation("androidx.appcompat:appcompat:1.0.2")
-    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
+    implementation("androidx.appcompat:appcompat:1.1.0-alpha03")
+    implementation ("androidx.activity:activity:1.0.0-alpha05")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.0-alpha3")
     implementation("com.google.android.material:material:1.0.0")
     implementation("android.arch.navigation:navigation-fragment:1.0.0")
     implementation("android.arch.navigation:navigation-ui:1.0.0")
