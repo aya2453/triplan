@@ -144,9 +144,9 @@
             android:id="@+id/new_trip_background3"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/common_16dp"
+            android:layout_marginTop="0dp"
             android:background="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/new_trip_edittext_end_date"
+            app:layout_constraintBottom_toBottomOf="@+id/new_trip_edittext_date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/new_trip_background2" />
@@ -158,7 +158,7 @@
             android:layout_marginStart="@dimen/common_16dp"
             android:src="@drawable/ic_round_date_range"
             android:tint="@color/ic_gray"
-            app:layout_constraintBottom_toBottomOf="@+id/new_trip_edittext_start_date"
+            app:layout_constraintBottom_toBottomOf="@+id/new_trip_edittext_date"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/new_trip_background3" />
 
@@ -168,7 +168,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/common_16dp"
             android:layout_marginTop="@dimen/common_8dp"
-            android:text="@string/new_trip_input_start_date"
+            android:text="@string/new_trip_input_date"
             android:textColor="@android:color/black"
             android:textSize="@dimen/text_size_12"
             android:textStyle="bold"
@@ -177,41 +177,17 @@
 
         <!-- TODO 動的にデフォルト日付はその日に設定する-->
         <EditText
-            android:id="@+id/new_trip_edittext_start_date"
+            android:id="@+id/new_trip_edittext_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/common_16dp"
+            android:cursorVisible="false"
+            android:focusable="false"
             android:hint="2018年01月01日"
-            android:inputType="date"
             android:textSize="@dimen/text_size_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/new_trip_text_start_date"
             app:layout_constraintTop_toBottomOf="@id/new_trip_text_start_date" />
-
-        <TextView
-            android:id="@+id/new_trip_text_end_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/common_8dp"
-            android:text="@string/new_trip_input_end_date"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/text_size_12"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/new_trip_edittext_start_date"
-            app:layout_constraintTop_toBottomOf="@id/new_trip_edittext_start_date" />
-
-        <EditText
-            android:id="@+id/new_trip_edittext_end_date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/common_16dp"
-            android:hint="2018年01月02日"
-            android:inputType="date"
-            android:textSize="@dimen/text_size_14"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/new_trip_text_end_date"
-            app:layout_constraintTop_toBottomOf="@id/new_trip_text_end_date" />
-
 
         <Button
             android:id="@+id/submit_button"
@@ -224,6 +200,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
 
     </fun.triplan.ui.common.ValidationTextInputLayoutWrapperLayout>
 </layout>

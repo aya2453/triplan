@@ -10,6 +10,7 @@ class TripListViewModel @Inject constructor(
 
     val newTripClickedEvent by lazy { LiveEvent<Boolean>() }
 
+
     fun pushLoginOrNewTrip() {
         newTripClickedEvent.call(firebaseAuth.currentUser != null)
     }

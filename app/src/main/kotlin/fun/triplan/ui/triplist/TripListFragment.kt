@@ -1,12 +1,14 @@
 package `fun`.triplan.ui.triplist
 
 import `fun`.triplan.R
+import `fun`.triplan.databinding.FragmentTriplistBinding
 import `fun`.triplan.di.ViewModelKey
 import `fun`.triplan.ui.BaseFragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -16,7 +18,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
-import kotlinx.android.synthetic.main.fragment_triplist.*
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -27,14 +29,28 @@ class TripListFragment : BaseFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    lateinit var binding: FragmentTriplistBinding
+
     private val tripListViewModel by lazy {
         ViewModelProviders.of(this, viewModelFactory).get(TripListViewModel::class.java)
     }
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(R.layout.fragment_triplist, container, false)
+        if (::binding.isInitialized) {
+            return binding.root
+        }
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_triplist, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = tripListViewModel
+
+        val tripListAdapter = TripListAdapter()
+        tripListAdapter.onTripClicked = { _, tripListId: Int ->
+            // TODO:画面遷移のコード書く
+            Timber.d("clicked! ${tripListId}")
+        }
+        binding.listRecyclerView.adapter = tripListAdapter
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,11 +62,9 @@ class TripListFragment : BaseFragment() {
                 navController.navigate(R.id.action_triList_to_login)
             }
         })
-        fab.setOnClickListener {
+        binding.fab.setOnClickListener {
             tripListViewModel.pushLoginOrNewTrip()
         }
-
-        list_recyclerView.adapter = TripListAdapter()
     }
 
     private fun launchNewTripActivity() {

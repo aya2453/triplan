@@ -51,24 +51,27 @@ dependencies {
     implementation(kotlin("stdlib-jdk7", KotlinCompilerVersion.VERSION))
 
     // UI
-    implementation("androidx.appcompat:appcompat:1.1.0-alpha03")
-    implementation ("androidx.activity:activity:1.0.0-alpha05")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.0-alpha3")
+    implementation("androidx.appcompat:appcompat:1.1.0-rc01")
+    implementation ("androidx.activity:activity:1.1.0-alpha01")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.0-beta2")
     implementation("com.google.android.material:material:1.0.0")
     implementation("android.arch.navigation:navigation-fragment:1.0.0")
     implementation("android.arch.navigation:navigation-ui:1.0.0")
+    implementation("androidx.leanback:leanback:1.1.0-alpha02")
+    implementation("com.savvi.datepicker:rangepicker:1.3.0")
+
 
     // Firebase
-    implementation("com.google.firebase:firebase-core:16.0.8")
-    implementation("com.google.android.gms:play-services-auth:16.0.1")
-    implementation("com.google.firebase:firebase-auth:16.2.0")
+    implementation("com.google.firebase:firebase-core:17.0.1")
+    implementation("com.google.android.gms:play-services-auth:17.0.0")
+    implementation("com.google.firebase:firebase-auth:18.1.0")
 
     // Dagger
-    implementation("com.google.dagger:dagger-android:2.21")
-    implementation("com.google.dagger:dagger-android-support:2.21")
+    implementation("com.google.dagger:dagger-android:2.23.2")
+    implementation("com.google.dagger:dagger-android-support:2.23.2")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    kapt("com.google.dagger:dagger-compiler:2.21")
-    kapt("com.google.dagger:dagger-android-processor:2.21")
+    kapt("com.google.dagger:dagger-compiler:2.23.2")
+    kapt("com.google.dagger:dagger-android-processor:2.23.2")
 
 
     // AAC
@@ -76,12 +79,12 @@ dependencies {
     kapt("androidx.lifecycle:lifecycle-compiler:2.0.0")
 
     // Util
-    implementation("androidx.core:core-ktx:1.0.1")
+    implementation("androidx.core:core-ktx:1.0.2")
     implementation("com.jakewharton.timber:timber:4.7.1")
 
-    implementation("com.squareup.retrofit2:retrofit:2.5.0")
+    implementation("com.squareup.retrofit2:retrofit:2.6.0")
     implementation("com.squareup.moshi:moshi:1.8.0")
-    implementation("com.squareup.retrofit2:converter-moshi:2.5.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.6.0")
     kapt("com.squareup.moshi:moshi-kotlin-codegen:1.8.0")
 
 
