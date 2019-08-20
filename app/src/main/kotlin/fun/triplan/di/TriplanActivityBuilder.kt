@@ -3,6 +3,7 @@ package `fun`.triplan.di
 import `fun`.triplan.R
 import `fun`.triplan.ui.TriplanActivity
 import `fun`.triplan.ui.login.LoginFragmentBuilder
+import `fun`.triplan.ui.trip.DatePickerDialogFragmentBuilder
 import `fun`.triplan.ui.trip.NewTripFragmentBuilder
 import `fun`.triplan.ui.trip.UserFragmentBuilder
 import `fun`.triplan.ui.triplist.TripListFragmentBuilder
@@ -22,6 +23,7 @@ internal abstract class TriplanActivityBuilder {
 @Module(includes = [
     LoginFragmentBuilder::class,
     NewTripFragmentBuilder::class,
+    DatePickerDialogFragmentBuilder::class,
     TripListFragmentBuilder::class,
     UserFragmentBuilder::class])
 abstract class TriplanActivityModule {

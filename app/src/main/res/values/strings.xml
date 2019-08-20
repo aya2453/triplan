@@ -15,7 +15,7 @@
     <!-- 旅行作成画面 -->
     <string name="new_trip_input_title">タイトル</string>
     <string name="new_trip_input_notes">説明</string>
-    <string name="new_trip_input_date">日程</string>
+    <string name="new_trip_input_start_date">開始日</string>
     <string name="new_trip_input_end_date">終了日</string>
     <string name="new_trip_hint_title">e.g.北陸旅行</string>
     <string name="new_trip_hint_note">e.g.車で黒部ダム〜飛騨高山〜白川郷〜金沢を巡る旅</string>
