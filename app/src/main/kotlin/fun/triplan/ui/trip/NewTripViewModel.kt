@@ -33,4 +33,8 @@ class NewTripViewModel @Inject constructor(
     fun register(email: String, password: String) {
         // リクエスト
     }
+
+    fun someAction() {
+        
+    }
 }
