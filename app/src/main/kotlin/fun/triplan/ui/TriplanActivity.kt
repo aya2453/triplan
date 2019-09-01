@@ -2,8 +2,11 @@ package `fun`.triplan.ui
 
 import `fun`.triplan.R
 import android.os.Bundle
+import android.util.Log
 import androidx.navigation.NavController
 import dagger.Lazy
+import io.reactivex.Observable
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 /**
@@ -25,6 +28,26 @@ class TriplanActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Observable.create<String> { source ->
+            listOf("Hello, World", "こんにちは")
+                    .forEach { it ->
+                        if (!source.isDisposed) {
+                            source.onNext(it)
+                        }
+                    }
+            source.onComplete()
+        }.observeOn(Schedulers.computation())
+                .subscribe({ item ->
+                    val threadName = Thread.currentThread().name
+                    Log.d("Rx#onNext", "$threadName $item") },
+                        { error ->
+                            error.printStackTrace()
+                        },{
+                    val threadName = Thread.currentThread().name
+                    Log.d("Rx#onComplete", "$threadName 完了しました")
+                }).dispose()
+        Thread.sleep(500L)
+
 //        navController.get().addOnDestinationChangedListener(destinationChangedListener)
     }
 

@@ -1,3 +1,4 @@
+
 import org.jetbrains.kotlin.config.KotlinCompilerVersion
 
 plugins {
@@ -6,7 +7,7 @@ plugins {
     kotlin("android.extensions")
     kotlin("kapt")
     id("androidx.navigation.safeargs.kotlin")
-    id("org.sonarqube") version "2.7"
+    id("org.sonarqube") version "2.7.1"
 }
 
 android {
@@ -73,6 +74,9 @@ dependencies {
     kapt("com.google.dagger:dagger-compiler:2.23.2")
     kapt("com.google.dagger:dagger-android-processor:2.23.2")
 
+    // Rx
+    implementation ("io.reactivex.rxjava2:rxandroid:2.1.1")
+    implementation("io.reactivex.rxjava2:rxkotlin:2.4.0")
 
     // AAC
     implementation("androidx.lifecycle:lifecycle-extensions:2.0.0")
